@@ -8,7 +8,8 @@
 function isEmailOkToSend($body)
 {
     foreach ($this->rejectedStuff() as $rejecting) {
-        if ( str_contains(strtolower($text), strtolower($rejecting)) ) {
+        
+        if (str_contains(strtolower($text), mb_strtolower($rejecting, 'UTF-8'))) {
             return false;
         }
     }
