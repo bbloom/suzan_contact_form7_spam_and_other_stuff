@@ -7,29 +7,17 @@
 
 function isEmailOkToSend($body)
 {
-    if (isContainsRejectedText($body) {
-        return false;
-    }
-
-    return true
-}
-
-function isContainsRejectedText($text)
-{
-    $text = strtolower($text);
-
     foreach ($this->rejectedStuff() as $rejecting) {
-        if (str_contains($text, $rejecting)) {
+        if ( str_contains(strtolower($text), strtolower($rejecting) ) {
             return true;
         }
-    }        
+    }
     
     return false;
 }
 
 function rejectedStuff()
 {
-    // must be lower case
     return [
         'agency',
         'babylon',
