@@ -8,12 +8,12 @@
 function isEmailOkToSend($body)
 {
     foreach ($this->rejectedStuff() as $rejecting) {
-        if ( str_contains(strtolower($text), strtolower($rejecting) ) {
-            return true;
+        if ( str_contains(strtolower($text), strtolower($rejecting)) ) {
+            return false;
         }
     }
     
-    return false;
+    return true;
 }
 
 function rejectedStuff()
