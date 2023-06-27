@@ -255,31 +255,33 @@ class WPCF7_Mail {
 			}
 		);
 
+
         // ========================================================================================================================
         //
         // START: BOB BLOOM's EDITS
         // JUNE 2023
         // reference: https://github.com/rocklobster-in/contact-form-7/blob/417cea1bb3cc5b0aaf98720528645ac91bfcffc3/includes/mail.
         // ========================================================================================================================
-
         include 'bob.php';
-        $kosher = isKosher($body);
-        if ($kosher) {
-           // send the email
+        
+        if (isEmailOkToSend($body)) {
+            
+            // send the email
+            return wp_mail( $recipient, $subject, $body, $headers, $attachments );
+        
         } else {
-           // return false;
+            
+            // do not send the email
+            return false;
         }
-        
-        // THE BODY IS WHERE THE ACTUAL SENDER's EMAIL ADDRESS IS. AND THE BODY OF THE CONTACT FORM THAT WAS FILLED IN. 
-        $body = 'bodyr = ' . $body
-        
+    
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
         
-        
-		return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 
+        
+		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
 
 
