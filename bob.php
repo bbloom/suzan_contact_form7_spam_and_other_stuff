@@ -74,7 +74,18 @@ function rejectedStuff()
         '.stream',
         '.xyz',
         '.zip',
+        'blackberryartyom@gmail.com',
+        'course-fitness.com',
+        'dokumenciki.net',
+        'financing',
+        'hospitality',
+        'itrafficlive',
+        'marketing platform',
+        'opportunity',
+        'rokl.ink',
+        'The Next Generation of AI',
         'yourmail',
         'youremail',
+        
     ];
 }
