@@ -59,7 +59,7 @@ function rejectedStuff()
         'vidnami',
         'vidyourbiz',
         'winning notification',
-        'viagra'
+        'viagra',
         '.cn',
         '.ru',
         '.su',
