@@ -75,17 +75,20 @@ function rejectedStuff()
         '.xyz',
         '.zip',
         'blackberryartyom@gmail.com',
+        'how to turn eyeballs into phone calls',
+        'living proof that contact form advertising works',
         'course-fitness.com',
         'dokumenciki.net',
         'financing',
         'hospitality',
         'itrafficlive',
+        'lead generation',
         'marketing platform',
         'opportunity',
         'rokl.ink',
+        'sex',
         'The Next Generation of AI',
         'yourmail',
         'youremail',
-        
     ];
 }
