@@ -85,6 +85,7 @@ function rejectedStuff()
         'dokumenciki.net',
         'financing',
         'hospitality',
+        'is your site generating leads for your business',
         'itrafficlive',
         'lead generation',
         'marketing platform',
