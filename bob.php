@@ -79,6 +79,7 @@ function rejectedStuff()
         'http://tinyurl',
         'https://tinyurl',
         'blackberryartyom@gmail.com',
+        'chatgpt4',
         'how to turn eyeballs into phone calls',
         'living proof that contact form advertising works',
         'course-fitness.com',
