@@ -90,6 +90,7 @@ function rejectedStuff()
         'itrafficlive',
         'lead generation',
         'marketing platform',
+        'mobile app',
         'opportunity',
         'rokl.ink',
         'sex',
