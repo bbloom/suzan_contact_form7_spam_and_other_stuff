@@ -69,6 +69,7 @@ function rejectedStuff()
         'living proof that contact form advertising works',
         'luck',
         'lucky',
+        'marketing',
         'marketing platform',
         'medical product',
         'mobile app',
