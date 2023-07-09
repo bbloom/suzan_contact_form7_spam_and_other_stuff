@@ -108,6 +108,8 @@ function rejectedStuff()
         'rokl.ink',
         'sex',
         'The Next Generation of AI',
+        'wordai',
+        'url=',
         'working capital',
         'yourmail',
         'youremail',
