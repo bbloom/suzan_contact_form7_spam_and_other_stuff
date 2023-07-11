@@ -22,6 +22,7 @@ function rejectedStuff()
     return [
         'agency',
         'aisocial',
+        'a.i. tool',
         'babylon',
         'belarus',
         'bible',
@@ -43,6 +44,7 @@ function rejectedStuff()
         'fakeid',
         'facebook',
         'financing',
+        'free',
         'free trial',
         'free-trial',
         'fuck',
