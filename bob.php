@@ -21,6 +21,7 @@ function rejectedStuff()
 {
     return [
         'agency',
+        'aisocial',
         'babylon',
         'belarus',
         'bible',
@@ -89,6 +90,7 @@ function rejectedStuff()
         'settlement',
         'sex',
         'shit',
+        'side income',
         'the next generation of ai',
         'url=',
         'urgent attention',
