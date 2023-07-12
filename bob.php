@@ -83,6 +83,7 @@ function rejectedStuff()
         'passive',
         'passives',
         'penis',
+        'possible to send letter convincingly and lawfully',
         'project financing',
         'promote',
         'registration',
@@ -121,5 +122,6 @@ function rejectedStuff()
         '.stream',
         '.xyz',
         '.zip',
+        'технологии',
     ];
 }
