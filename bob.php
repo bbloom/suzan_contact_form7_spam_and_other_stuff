@@ -74,6 +74,7 @@ function rejectedStuff()
         'lucky',
         'marketing',
         'marketing platform',
+        'do you have marketing video',
         'medical product',
         'mobile app',
         'naked',
