@@ -29,6 +29,7 @@ function rejectedStuff()
         'bitcoin',
         'blackberryartyom@gmail.com',
         'boost your sales',
+        'but now what?',
         'chatgpt4',
         'course-fitness.com',
         'cutting edge',
