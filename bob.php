@@ -5,6 +5,8 @@
 // SO IT IS ALL IN ONE SINGLE VARIABLE. SO JUST CHECK THE VARIABLE
 // FOR FORBIDDEN STUFF
 
+// if (isEmailOkToSend('string')) { echo "ok"; } else { echo "NOT ok"; }
+
 function isEmailOkToSend($body)
 {
     foreach (rejectedStuff() as $rejecting) {
