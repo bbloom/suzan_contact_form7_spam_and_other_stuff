@@ -9,6 +9,10 @@
 
 function isEmailOkToSend($body)
 {
+    if (isSubjectEmpty($body)) {
+        return false;
+    }
+    
     foreach (rejectedStuff() as $rejecting) {
         
         if (str_contains(mb_strtolower($body), strtolower($rejecting))) {
@@ -17,6 +21,20 @@ function isEmailOkToSend($body)
     }
     
     return true;
+}
+
+
+function isSubjectEmpty($body)
+{
+    $empty = "Subject:
+
+Message:";
+
+    if ($body == $empty) {
+        return true;
+    }
+
+    return false;        
 }
 
 function rejectedStuff()
