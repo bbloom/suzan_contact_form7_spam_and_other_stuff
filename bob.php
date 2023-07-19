@@ -28,7 +28,7 @@ function isEmailOkToSend($body)
     }
 
     // NOT TESTED !!!!!
-    if (function isNotEnglish($body) {
+    if (isNotEnglish($body)) {
         return false;
     }
     
