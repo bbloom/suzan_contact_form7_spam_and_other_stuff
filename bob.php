@@ -32,7 +32,7 @@ function isEmailOkToSend($body)
 
 function isSubjectEmpty($body)
 {
-    if (substr(mb_strtolower($body), -16) == 'Subject:
+    if (substr(mb_strtolower($body), -20) == 'Subject:
 
 Message:') {
         return true;
