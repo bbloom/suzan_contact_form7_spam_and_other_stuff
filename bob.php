@@ -12,6 +12,10 @@
 
 function isEmailOkToSend($body)
 {
+    if (isSubjectEmpty($body)) {
+        return false;
+    }
+
     if (isMessageEmpty($body)) {
         return false;
     }
@@ -26,6 +30,16 @@ function isEmailOkToSend($body)
     return true;
 }
 
+function isSubjectEmpty($body)
+{
+    if (substr(mb_strtolower($body), -16) == 'Subject:
+
+Message:') {
+        return true;
+    }
+
+    return false;
+}
 
 function isMessageEmpty($body)
 {
