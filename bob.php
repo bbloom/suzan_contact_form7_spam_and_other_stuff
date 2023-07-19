@@ -33,7 +33,8 @@ function isSubjectEmpty($body)
 
 Message:";
 
-    if ($body == $empty) {
+    //if ($body == $empty) {
+    if (str_contains(mb_strtolower($body), strtolower($empty))) {
         return true;
     }
 
