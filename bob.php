@@ -34,6 +34,8 @@ function isEmailOkToSend($body)
     return true;
 }
 
+
+
 function isSubjectEmpty($body)
 {
     if (substr(mb_strtolower($body), -20) == 'Subject:
