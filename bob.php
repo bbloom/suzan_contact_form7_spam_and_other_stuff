@@ -12,7 +12,7 @@
 
 function isEmailOkToSend($body)
 {
-    if (isSubjectEmpty($body)) {
+    if (isMessageEmpty($body)) {
         return false;
     }
     
@@ -27,18 +27,13 @@ function isEmailOkToSend($body)
 }
 
 
-function isSubjectEmpty($body)
+function isMessageEmpty($body)
 {
-    $empty = "Subject:
-
-Message:";
-
-    //if ($body == $empty) {
-    if (str_contains(mb_strtolower($body), strtolower($empty))) {
+    if (substr(mb_strtolower($string), -8) == '') {
         return true;
     }
 
-    return false;        
+    return false;
 }
 
 function rejectedStuff()
