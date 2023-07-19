@@ -29,7 +29,7 @@ function isEmailOkToSend($body)
 
 function isMessageEmpty($body)
 {
-    if (substr(mb_strtolower($string), -8) == '') {
+    if (substr(mb_strtolower($body), -8) == '') {
         return true;
     }
 
