@@ -26,6 +26,11 @@ function isEmailOkToSend($body)
             return false;
         }
     }
+
+    // NOT TESTED !!!!!
+    if (function isNotEnglish($body) {
+        return false;
+    }
     
     return true;
 }
@@ -44,6 +49,29 @@ Message:') {
 function isMessageEmpty($body)
 {
     if (substr(mb_strtolower($body), -8) == 'message:') {
+        return true;
+    }
+
+    return false;
+}
+
+function isNotEnglish($text)
+{
+    // https://stackoverflow.com/questions/3212266/detecting-russian-characters-on-a-form-in-ph
+    // since version 5.1.0 it has been possible to look for specific (writing) scripts in utf-8 PCRE regular expressions by using \p{language code}
+    
+    // https://www.php.net/manual/en/regexp.reference.unicode.php
+    // Matching characters by Unicode property is not fast, because PCRE has to search a structure that contains data for over fifteen thousand characters. 
+    if (preg_match( '/[\p{Arabic}]/u', $text)) { 
+        return true;
+    }
+    if (preg_match( '/[\p{Cyrillic}]/u', $text)) { 
+        return true;
+    }
+    if (preg_match( '/[\p{Hebrew}]/u', $text)) { 
+        return true;
+    }
+    if (preg_match( '/[\p{Hebrew}]/u', $text)) { 
         return true;
     }
 
