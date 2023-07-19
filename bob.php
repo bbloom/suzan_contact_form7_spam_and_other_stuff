@@ -27,7 +27,6 @@ function isEmailOkToSend($body)
         }
     }
 
-    // NOT TESTED !!!!!
     if (isNotEnglish($body)) {
         return false;
     }
@@ -66,9 +65,6 @@ function isNotEnglish($text)
         return true;
     }
     if (preg_match( '/[\p{Cyrillic}]/u', $text)) { 
-        return true;
-    }
-    if (preg_match( '/[\p{Hebrew}]/u', $text)) { 
         return true;
     }
     if (preg_match( '/[\p{Hebrew}]/u', $text)) { 
