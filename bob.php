@@ -124,6 +124,7 @@ function rejectedStuff()
         'https://shorturl',
         'http://tinyurl',
         'https://tinyurl',
+        'i ran an audit on your site',
         'is your site generating leads for your business',
         'investment',
         'investing',
