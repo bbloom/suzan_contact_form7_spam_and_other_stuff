@@ -90,6 +90,7 @@ function rejectedStuff()
         'boost your sales',
         'but now what?',
         'chatgpt4',
+        'cialis',
         'course-fitness.com',
         'crypto',
         'cryptocurrency',
