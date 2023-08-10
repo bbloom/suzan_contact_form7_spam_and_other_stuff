@@ -79,6 +79,7 @@ function isNotEnglish($text)
 function rejectedStuff()
 {
     return [
+        '$15',
         'agency',
         'aisocial',
         'a.i. tool',
@@ -119,6 +120,7 @@ function rejectedStuff()
         'google.com',
         'great news',
         'growth service',
+        'quick question',
         'hack',
         'hard work',
         'hospitality',
