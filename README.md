@@ -15,6 +15,8 @@ These are the steps I took to get my mods back in there!
 - SSH into the server
 - cd into /wp-content/plugins/contact-form-7/includes
 - make this repo public !!!
-- `wget https://github.com/bbloom/suzan_contact_form7_spam/blob/master/bob.php`
+- `wget https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam/master/bob.php`
 - make this repo private again!!
 - add https://github.com/bbloom/suzan_contact_form7_spam/blob/c1b2b93fa3e69d27ab524cbf76690885a0c9081c/mail.php#L259 to mail.php
+
+
