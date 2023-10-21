@@ -28,6 +28,8 @@ function tribe_is_event_query() {
     return apply_filters( 'tribe_query_is_event_query', $tribe_is_event_query );
 }
 
+
+==> I DID NOT PASTE THIS FUNCTION, HERE FOR REFERENCE ONLY
 // https://docs.theeventscalendar.com/reference/functions/tribe_is_list_view/
 function tribe_is_list_view() {
 	$is_list_view = 'list' == Tribe__Events__Main::instance()->displaying ? true : false;
