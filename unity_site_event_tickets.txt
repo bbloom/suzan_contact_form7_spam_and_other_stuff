@@ -1,7 +1,7 @@
 FOR THE UNITYVERDEVALLEY.org SITE
 
 ---
-PUT THIS RIGHT AT THE TOP OF /wp-content/themes/my-religion/functions/cmsmasters-events-function.php:
+PUT THIS RIGHT AT THE TOP OF /wp-content/themes/my-religion/tribe-events/cmsmasters-events-function.php:
 
 
 
