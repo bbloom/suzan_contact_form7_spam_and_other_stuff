@@ -26,10 +26,10 @@ if ( !defined( 'ABSPATH' ) ) exit;
  * @return string
  */
 function bob_login_redirect( $redirect_to, $request, $user ) {
-	
+
 	//is there a user to check?
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
-		
+
 		// if are the administrator AND are logging into the wp-admin, then continue into the wp-admin
 		// https://developer.wordpress.org/reference/functions/is_admin/
 		if ( in_array( 'administrator', $user->roles ) ) {
@@ -40,7 +40,7 @@ function bob_login_redirect( $redirect_to, $request, $user ) {
 			// redirect to the front-end's home page
 			return home_url();
 		}
-		
+
 	} else {
 		// there is no user
 		return $redirect_to;
