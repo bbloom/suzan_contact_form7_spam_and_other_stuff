@@ -20,9 +20,11 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Redirect user after successful login.
  *
- * @param string $redirect_to URL to redirect to.
- * @param string $request URL the user is coming from.
- * @param object $user Logged user's data.
+ * @url https://developer.wordpress.org/reference/hooks/login_redirect/
+ *
+ * @param string $redirect_to  Redirect destination URL
+ * @param string $request      URL the user is coming from 
+ * @param object $user         Logged user's data
  * @return string
  */
 function bob_login_redirect( $redirect_to, $request, $user ) {
@@ -50,10 +52,31 @@ add_filter( 'login_redirect', 'bob_login_redirect', 10, 3 );
 
 
 /**
- * Logout redirect to user specific URL.
+ * Redirect user after successful login.
+ *
+ * @url https://developer.wordpress.org/reference/hooks/logout_redirect/
+ *
+ * @param string $redirect_to           The redirect destination URL
+ * @param string $request_redirect_to   The requested redirect destination URL passed as a parameter
+ * @param object $user                  The WP_User object for the user that’s logging out
+ * @return string
  */
-function bob_logout_redirect( $user ){
-    // do something
+function se_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
+	
+	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
+
+		// if are the administrator AND are logging out of the wp-admin, then continue into the wp-admin
+		// https://developer.wordpress.org/reference/functions/is_admin/
+		if ( in_array( 'administrator', $user->roles ) ) {
+			// redirect to the default url
+			return $redirect_to;
+		} else {
+			// not an administrator OR are an administrator who is logging out via the front-end
+			// redirect to the front-end's home page
+			return home_url();
+		}
+
+	} 
 }
-add_action('wp_logout', 'bob_logout_redirect');
+add_filter( 'logout_redirect', 'se_logout_redirect', 10, 3 );
 
