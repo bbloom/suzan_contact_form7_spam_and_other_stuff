@@ -16,47 +16,6 @@ Domain Path: /
 */
 if ( !defined( 'ABSPATH' ) ) exit;
 
-/**
- * Login redirect to user specific URL.
- */
-function bob_login_redirect( $user ) {
-    if ( ! is_user_logged_in() ) {
-        
-        if ( is_admin() ) {
-             wp_redirect("https://ra-docs.creativeraven.com/wp-admin/");
-             exit;
-        } else {
-             wp_redirect("https://ra-docs.creativeraven.com/");
-             exit;
-        }
-    }
-
-    if ( is_user_logged_in() }
-
-
-            
-
-        
-   wp_redirect("https://ra-docs.creativeraven.com/wp-admin/");
-  exit;
-  } else {
-  wp_redirect("https://ra-docs.creativeraven.com/wp-admin/");
-  exit;
- }
-
-    // do something
-
-    // https://developer.wordpress.org/reference/functions/wp_redirect/
-    //$url = "https://nfl.com";
-    //wp_redirect( $url );
-    //exit;
-    $user = wp_get_current_user();
-    $roles = ( array ) $user->roles;
-
-    return;
-}
-add_filter( 'login_redirect', 'bob_login_redirect' );
-
 
 /**
  * Redirect user after successful login.
@@ -66,7 +25,7 @@ add_filter( 'login_redirect', 'bob_login_redirect' );
  * @param object $user Logged user's data.
  * @return string
  */
-function my_login_redirect( $redirect_to, $request, $user ) {
+function bob_login_redirect( $redirect_to, $request, $user ) {
 	//is there a user to check?
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
 		//check for admins
@@ -80,8 +39,8 @@ function my_login_redirect( $redirect_to, $request, $user ) {
 		return $redirect_to;
 	}
 }
+add_filter( 'login_redirect', 'bob_login_redirect', 10, 3 );
 
-add_filter( 'login_redirect', 'my_login_redirect', 10, 3 );
 
 /**
  * Logout redirect to user specific URL.
