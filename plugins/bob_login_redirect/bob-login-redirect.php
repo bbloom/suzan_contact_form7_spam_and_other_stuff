@@ -26,6 +26,9 @@ function bob_login_redirect( $user ) {
     //$url = "https://nfl.com";
     //wp_redirect( $url );
     //exit;
+    $user = wp_get_current_user();
+    $roles = ( array ) $user->roles;
+
     return;
 }
 add_filter( 'login_redirect', 'bob_login_redirect' );
