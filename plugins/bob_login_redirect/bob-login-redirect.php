@@ -19,20 +19,21 @@ if ( !defined( 'ABSPATH' ) ) exit;
 /**
  * Login redirect to user specific URL.
  */
-function bob_login_redirect( $redirect_to, $request, $user ) {
+function bob_login_redirect( $user ) {
     // do something
 
     // https://developer.wordpress.org/reference/functions/wp_redirect/
-    $url = "https://nfl.com";
-    wp_redirect( $url );
-    exit;
+    //$url = "https://nfl.com";
+    //wp_redirect( $url );
+    //exit;
+    return;
 }
-add_filter( 'login_redirect', 'bob_login_redirect', 10, 3 );
+add_filter( 'login_redirect', 'bob_login_redirect' );
 
 /**
  * Logout redirect to user specific URL.
  */
-function bob_logout_redirect(){
+function bob_logout_redirect( $user ){
     // do something
 }
 add_action('wp_logout', 'bob_logout_redirect');
