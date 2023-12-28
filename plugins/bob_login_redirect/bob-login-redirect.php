@@ -66,7 +66,7 @@ function bob_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
 		// if are the administrator AND are logging out of the wp-admin, then continue into the wp-admin
 		// https://developer.wordpress.org/reference/functions/is_admin/
-		if ( (in_array( 'administrator', $user->roles )) && (true === strpos( $_SERVER['HTTP_REFERER'], 'wp-admin') ) {
+		if ( (in_array( 'administrator', $user->roles )) && (strpos($_SERVER['HTTP_REFERER'], 'wp-admin')) ) {
 			// redirect to the default url
 			return $redirect_to;
 		} else {
