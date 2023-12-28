@@ -32,9 +32,8 @@ function bob_login_redirect( $redirect_to, $request, $user ) {
 	//is there a user to check?
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
 
-		// if are the administrator AND are logging into the wp-admin, then continue into the wp-admin
-		// https://developer.wordpress.org/reference/functions/is_admin/
-		if ( (in_array( 'administrator', $user->roles )) && (is_admin()) ){
+		// if are the administrator AND are logging into the wp-admin via wp-login.php, then continue into the wp-admin
+		if ( (in_array( 'administrator', $user->roles )) && ($GLOBALS['pagenow'] == 'wp-login.php') ){
 			// redirect to the default url
 			return $redirect_to;
 		} else {
