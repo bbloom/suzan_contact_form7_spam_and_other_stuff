@@ -16,3 +16,32 @@ Domain Path: /
 */
 if ( !defined( 'ABSPATH' ) ) exit;
 
+/**
+ * Login redirect to user specific URL.
+ */
+function wplalr_wp_login_redirect( $redirect_to, $request, $user ) {
+    $redirect_to =  get_option('wplalr_login_redirect');
+
+    if(empty($redirect_to)){
+        $redirect_to = admin_url();
+    }
+
+    return $redirect_to;
+}
+add_filter( 'login_redirect', 'wplalr_wp_login_redirect', 10, 3 );
+
+/**
+ * Logout redirect to user specific URL.
+ */
+function wplalr_wp_logout_redirect(){
+    $wplalr_logout_redirect =  get_option('wplalr_logout_redirect');
+
+    if(empty($wplalr_logout_redirect)){
+        $wplalr_logout_redirect = home_url();
+    }
+
+    wp_redirect( $wplalr_logout_redirect );
+    exit();
+}
+add_action('wp_logout', 'wplalr_wp_logout_redirect');
+
