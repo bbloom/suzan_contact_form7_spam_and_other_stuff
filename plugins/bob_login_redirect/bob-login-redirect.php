@@ -34,7 +34,7 @@ function bob_login_redirect( $redirect_to, $request, $user ) {
 
 		// if are the administrator AND are logging into the wp-admin, then continue into the wp-admin
 		// https://developer.wordpress.org/reference/functions/is_admin/
-		if ( in_array( 'administrator', $user->roles ) ) {
+		if ( (in_array( 'administrator', $user->roles )) && (is_admin()) ){
 			// redirect to the default url
 			return $redirect_to;
 		} else {
@@ -61,13 +61,13 @@ add_filter( 'login_redirect', 'bob_login_redirect', 10, 3 );
  * @param object $user                  The WP_User object for the user that’s logging out
  * @return string
  */
-function se_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
-	
+function bob_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
+
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
 
 		// if are the administrator AND are logging out of the wp-admin, then continue into the wp-admin
 		// https://developer.wordpress.org/reference/functions/is_admin/
-		if ( in_array( 'administrator', $user->roles ) ) {
+		if ( (in_array( 'administrator', $user->roles )) && (is_admin()) ){
 			// redirect to the default url
 			return $redirect_to;
 		} else {
@@ -76,7 +76,7 @@ function se_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
 			return home_url();
 		}
 
-	} 
+	}
 }
-add_filter( 'logout_redirect', 'se_logout_redirect', 10, 3 );
+add_filter( 'logout_redirect', 'bob_logout_redirect', 10, 3 );
 
