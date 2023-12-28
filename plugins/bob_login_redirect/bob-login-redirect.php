@@ -2,7 +2,7 @@
 /*
 Plugin Name: Bob Custom Redirection Plugin for Login and Logout
 suppress_Plugin URI: https://github.com/bbloom/suzan_contact_form7_spam_and_other_shit
-Description: This plugin which enables you to redirect users to specific URL on login or logout or both.
+Description: This plugin which enables you to redirect users to specific URL on login or logout.
 Version: 1.0
 Author: Bob Bloom
 Author URI: https://lasallesoftware.ca
@@ -64,9 +64,9 @@ function bob_logout_redirect( $redirect_to, $requested_redirect_to, $user ) {
 
 	if ( isset( $user->roles ) && is_array( $user->roles ) ) {
 
-		// if are the administrator AND are logging out of the wp-admin, then continue into the wp-admin
-		// https://developer.wordpress.org/reference/functions/is_admin/
-		if ( (in_array( 'administrator', $user->roles )) && (strpos($_SERVER['HTTP_REFERER'], 'wp-admin')) ) {
+		// have not succeeded determining if the logout is coming from the front-end
+		// so, if administrator, assume back-end
+		if (in_array( 'administrator', $user->roles)) {
 			// redirect to the default url
 			return $redirect_to;
 		} else {
