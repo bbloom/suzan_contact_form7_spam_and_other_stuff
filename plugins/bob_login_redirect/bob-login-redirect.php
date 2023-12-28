@@ -21,6 +21,11 @@ if ( !defined( 'ABSPATH' ) ) exit;
  */
 function bob_login_redirect( $redirect_to, $request, $user ) {
     // do something
+
+    // https://developer.wordpress.org/reference/functions/wp_redirect/
+    $url = "https://nfl.com";
+    wp_redirect( $url );
+    exit;
 }
 add_filter( 'login_redirect', 'bob_login_redirect', 10, 3 );
 
