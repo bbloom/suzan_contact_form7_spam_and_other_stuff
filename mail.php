@@ -263,18 +263,18 @@ class WPCF7_Mail {
         // reference: https://github.com/rocklobster-in/contact-form-7/blob/417cea1bb3cc5b0aaf98720528645ac91bfcffc3/includes/mail.
         // ========================================================================================================================
         include 'bob.php';
-        
+
         if (isEmailOkToSend($body)) {
-            
+
             // send the email
             return wp_mail( $recipient, $subject, $body, $headers, $attachments );
-        
+
         } else {
-            
+
             // do not send the email
             return false;
         }
-    
+
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
