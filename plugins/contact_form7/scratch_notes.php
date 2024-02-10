@@ -23,41 +23,36 @@ I want to add a file that is "wget", or otherwise read, or perhaps an easy API c
 
 =================================================================================================================================================
 The wget file to update:
-<?
-$server_name = "cloudways1120_blah_blah_blah";
-$application_name = "abcdefghi";
 
-// read the remote file to see if updates are needed
-$do_the_update = file_get_contents(
-    string $filename_of_my_file_on_this_github_repo,
-    bool $use_include_path = false,
-    ?resource $context = null,
-    int $offset = 0,
-    ?int $length = null
-): string|false
+==> can just use a bash script... because you can fetch the results of a file with the --output-document=FILE option. 
+** https://linuxhandbook.com/if-else-bash/
+** https://linuxhandbook.com/if-else-bash/
+** https://www.howtogeek.com/884039/how-to-use-bash-if-statements-with-examples/
 
-if ($do_the_update == "YES") {
-  // https://linuxize.com/post/wget-command-examples/
-  // wget from_here  place_the_file_over_here
-}
+** https://www.digitalocean.com/community/tutorials/how-to-use-wget-to-download-files-and-interact-with-rest-apis
+** https://linuxize.com/post/wget-command-examples/
+
+---
+HOW ABOUT THIS?  ==> THIS IS PROBABLY THE ONE TO DO, AND THEN PUT IT IN THE CRON
+
+#!/bin/bash
+
+// -O-  save results from remote file, instead of downloading it
+// -q   suppress wget's status output
+do_update = wget -O- -q https://jsonplaceholder.typicode.com/posts?_limit=2
+
+if [ $do_update = 'YES' ]; then
+
+    # When downloading a file, Wget stores it in the current directory by default. You can change that by using the -P option to specify the name of the directory where you want to save the file.
+    # download from code.jquery.com/jquery-3.6.0.min.js, and save it to the Downloads folder (which I assume is a subfolder)
+    # -q turns off output
+    # -o overwrite existing file (small letter oh)
+    #  wget file_goes_here   file_comes_from_this_remote_location
+    wget -o -P /path/contact_form7/ -q https://cdn.pixabay.com/photo/2016/12/13/05/15/puppy-1903313__340.jpg 
+fi
 
 
-//---
-// example from https://stackoverflow.com/questions/31572189/read-a-remote-file-in-php
-// Don't forget, that for "Option 2" the configuration variable 'allow_url_fopen' must be set to on. 
 
-    $string = file_get_contents("http://www.example.com");
 
-    if($string === FALSE) {
-         echo "Could not read the file.";
-    } else {
-         echo $string;
-    }
-//--
 
-// use PHP;s EXEC command to do the WGETs
-// https://www.php.net/manual/en/function.exec.php
-
-  
-?>
 
