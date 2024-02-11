@@ -1,7 +1,7 @@
 <?php
 
 /**
- * Class that represents an attempt to compose and send email. UPDATE2
+ * Class that represents an attempt to compose and send email. UPDATE3
  */
 class WPCF7_Mail {
 
