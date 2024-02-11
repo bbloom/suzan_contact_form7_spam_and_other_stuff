@@ -1,7 +1,5 @@
 <?php
 
-// UPDATE 2
-
 // THE BODY CONTAINS THE FROM EMAIL ADDRESS WITHIN IT.
 // THE BODY ALSO CONTAINS THE SUBJECT LINE AND MESSAGE.
 // SO IT IS ALL IN ONE SINGLE VARIABLE. SO JUST CHECK THE VARIABLE
@@ -199,4 +197,6 @@ function rejectedStuff()
         '.zip',
         'технологии',
     ];
+    
+    // UPDATE 2
 }
