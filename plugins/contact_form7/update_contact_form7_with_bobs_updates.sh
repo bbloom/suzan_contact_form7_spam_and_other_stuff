@@ -10,7 +10,7 @@
 
 # -O- = return contents, do not actually download  (--output-document=FILE)
 # -q  = suppress wget's progress output
-do_update = wget -O- -q https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_shit/master/plugins/contact_form7/is_update_contact_form7_with_bobs_updates.txt
+do_update=$(wget -O- -q https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_shit/master/plugins/contact_form7/is_update_contact_form7_with_bobs_updates.txt)
 
 # =============================================================================================
 #  STEP 2: check if update is required... if so, perform the update
