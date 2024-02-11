@@ -17,5 +17,6 @@ do_update=$(wget -O- -q https://raw.githubusercontent.com/bbloom/suzan_contact_f
 # =============================================================================================
 
 if [ $do_update = 'YES' ]; then
-echo "YES, DO THE UPDATE!
+echo "YES, DO THE UPDATE!'
+wget XXXXX
 fi
