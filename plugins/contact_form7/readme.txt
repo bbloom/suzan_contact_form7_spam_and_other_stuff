@@ -4,6 +4,14 @@ CONTACT FORM 7: My Spam Edits
 
 I made direct edits to the Contact Form7 source code to inhibit spam emails.
 
+
+
+======================================================================
+IF NOT UPDATING, MAKE SURE THIS REPO IS PUBLIC!
+======================================================================
+
+
+
 ===================================
 is_update_contact_form7_with_bobs_updates.txt
 -----------------------------------
