@@ -198,5 +198,5 @@ function rejectedStuff()
         'технологии',
     ];
     
-    // UPDATE 3
+    // UPDATE 4
 }
