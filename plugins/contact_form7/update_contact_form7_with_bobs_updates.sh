@@ -29,8 +29,8 @@ fi
 
 # Perform the update!
 PLUGIN_PATH=../wp-content/plugins/contact-form-7/includes
-curl -o  ..$PLUGIN_PATH/mail.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/mail_with_bobs_updates.php
-curl -o  ..$PLUGIN_PATH/bob.php   https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/bob.php
+curl -o  $PLUGIN_PATH/mail.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/mail_with_bobs_updates.php
+curl -o  $PLUGIN_PATH/bob.php   https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/bob.php
 
 
 echo "====================================================="
