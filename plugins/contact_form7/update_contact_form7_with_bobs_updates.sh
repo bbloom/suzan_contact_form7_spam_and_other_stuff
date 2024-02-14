@@ -9,7 +9,7 @@ echo "====================================================="
 
 # if the file "bob.php" exists, then do NOT do the update!!
 # https://linuxize.com/post/bash-check-if-file-exists/
-FILE=../wp-content/plugins/contact-form-7/includes/bob
+FILE=../wp-content/plugins/contact-form-7/includes/bob.php
 if test -f "$FILE"; then
     echo "==============================================="
     echo "$FILE exists. "
