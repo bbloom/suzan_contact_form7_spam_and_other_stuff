@@ -9,8 +9,7 @@ echo "====================================================="
 
 # if the file "bob.php" exists, then do NOT do the update!!
 # https://linuxize.com/post/bash-check-if-file-exists/
-# FILE=../wp-content/plugins/contact-form-7/includes/bob
-FILE=../bb_test_stuff/bob.php
+FILE=../wp-content/plugins/contact-form-7/includes/bob
 if test -f "$FILE"; then
     echo "==============================================="
     echo "$FILE exists. "
@@ -29,11 +28,9 @@ fi
 
 
 # Perform the update!
-#PLUGIN_PATH=../wp-content/plugins/contact-form-7/includes
-PLUGIN_PATH=../bb_test_stuff
-   curl -o  ..$PLUGIN_PATH/mail.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/mail_with_bobs_updates.php
-   curl -o  ..$PLUGIN_PATH//bob.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/bob.php
-   #curl https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/bob.php >> bob.php
+PLUGIN_PATH=../wp-content/plugins/contact-form-7/includes
+curl -o  ..$PLUGIN_PATH/mail.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/mail_with_bobs_updates.php
+curl -o  ..$PLUGIN_PATH//bob.php  https://raw.githubusercontent.com/bbloom/suzan_contact_form7_spam_and_other_stuff/master/plugins/contact_form7/bob.php
 
 
 echo "====================================================="
