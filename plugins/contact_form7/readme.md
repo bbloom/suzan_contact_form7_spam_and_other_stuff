@@ -16,8 +16,12 @@
 - copy paste file contents!
 
 # Installation Step 2: create CRON:
-- use the basic cron editor
+- use the advanced cron editor
 - I suggest once an hour
-- ```custom_cron_scripts/update_contact_form7_with_bobs_updates.sh```
+```
+0  *  *  *  *       cd /home/1140098.cloudwaysapps.com/dmvwhsksgf/public_html && php /home/1140098.cloudwaysapps.com/dmvwhsksgf/public_html/custom_cron_scripts/update_contact_form7_with_bobs_updates.sh > /home/1140098.cloudwaysapps.com/dmvwhsksgf/tmp/update_contact_form7_with_bobs_updates.txt 2>&1 #CloudwaysApps
+```
+
+
 
 DONE!
