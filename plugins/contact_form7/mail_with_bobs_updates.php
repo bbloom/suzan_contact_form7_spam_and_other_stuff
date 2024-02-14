@@ -1,9 +1,21 @@
 <?php
 
 /**
- * Class that represents an attempt to compose and send email. UPDATE3
+ * Class that represents an attempt to compose and send email.
  */
 class WPCF7_Mail {
+
+
+/* =====================================================================================
+   This file is the merge of the original source file with Bob Bloom's direct source code edits.
+   
+   This file is at https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php.
+
+   This file is from https://raw.githubusercontent.com/rocklobster-in/contact-form-7/dev/5.7/includes/mail.php.
+
+   This file was created on February 14, 2024.
+   ===================================================================================== */
+	
 
 	private static $current = null;
 
@@ -256,7 +268,7 @@ class WPCF7_Mail {
 		);
 
 
-        // ========================================================================================================================
+	// ========================================================================================================================
         //
         // START: BOB BLOOM's EDITS
         // JUNE 2023
@@ -278,9 +290,7 @@ class WPCF7_Mail {
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
-        
 
-        
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
 
