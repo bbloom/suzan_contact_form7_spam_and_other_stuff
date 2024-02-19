@@ -276,10 +276,8 @@ class WPCF7_Mail {
 
 
         // ========================================================================================================================
-        //
         // START: BOB BLOOM's EDITS
-        // JUNE 2023
-        // reference: https://github.com/rocklobster-in/contact-form-7/blob/417cea1bb3cc5b0aaf98720528645ac91bfcffc3/includes/mail.
+        // These edits last made on JUNE 2023
         // ========================================================================================================================
         include 'bob.php';
 
