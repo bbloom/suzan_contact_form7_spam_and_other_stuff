@@ -3,6 +3,7 @@
 - on Cloudways
 
 # Merge my custom mods with the original /includes/main.php
+- https://github.com/rocklobster-in/contact-form-7
 - merge them into mail_with_bobs_updates.php
 - my mods are in mail_with_updates_for_reference_do_not_change.php
 - when Contact Form7 updates, update this file
