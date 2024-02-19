@@ -1,21 +1,39 @@
 <?php
 
+add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
+
+/**
+ * Filter callback that applies auto-p to HTML email message body.
+ */
+function wpcf7_mail_html_body_autop( $body ) {
+	if ( wpcf7_autop_or_not( array( 'for' => 'mail' ) ) ) {
+		$body = wpcf7_autop( $body );
+	}
+
+	return $body;
+}
+
+
 /**
  * Class that represents an attempt to compose and send email.
  */
 class WPCF7_Mail {
 
-
 /* =====================================================================================
    This file is the merge of the original source file with Bob Bloom's direct source code edits.
+
+   The merged file, solely for referencing my edits, is at:
+   * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
+
+   This file is for Contact Form7, release 5.8.7:
+   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v5.8.7
    
-   This file is at https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php.
+   The original, source, mail.php, is file is at:
+   * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
+   * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file is from https://raw.githubusercontent.com/rocklobster-in/contact-form-7/dev/5.7/includes/mail.php.
-
-   This file was created on February 14, 2024.
+   This file was created on February 19, 2024.
    ===================================================================================== */
-	
 
 	private static $current = null;
 
@@ -154,14 +172,19 @@ class WPCF7_Mail {
 <title>' . esc_html( $this->get( 'subject', true ) ) . '</title>
 </head>
 <body>
-', $this );
+',
+			$this
+		);
+
+		$body = apply_filters( 'wpcf7_mail_html_body', $body, $this );
 
 		$footer = apply_filters( 'wpcf7_mail_html_footer',
 			'</body>
-</html>', $this );
+</html>',
+			$this
+		);
 
-		$html = $header . wpcf7_autop( $body ) . $footer;
-		return $html;
+		return $header . $body . $footer;
 	}
 
 
@@ -269,10 +292,8 @@ class WPCF7_Mail {
 
 
 	// ========================================================================================================================
-        //
         // START: BOB BLOOM's EDITS
-        // JUNE 2023
-        // reference: https://github.com/rocklobster-in/contact-form-7/blob/417cea1bb3cc5b0aaf98720528645ac91bfcffc3/includes/mail.
+        // These edits last made on JUNE 2023
         // ========================================================================================================================
         include 'bob.php';
 
@@ -290,6 +311,7 @@ class WPCF7_Mail {
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
+        
 
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
