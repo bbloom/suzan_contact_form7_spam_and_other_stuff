@@ -25,7 +25,7 @@ class WPCF7_Mail {
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 5.8.7:
+   This file is for Contact Form7, release 5.9.3:
    * https://github.com/rocklobster-in/contact-form-7/releases/tag/v5.9.3
    
    The original, source, mail.php, is file is at:
