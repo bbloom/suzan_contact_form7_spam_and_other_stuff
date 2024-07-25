@@ -1,34 +1,46 @@
 <?php
 
-/**
- * Class that represents an attempt to compose and send email.
- */
-class WPCF7_Mail {
-
-
 /* =====================================================================================
    This file is the merge of the original source file with Bob Bloom's direct source code edits.
 
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 5.8.7:
-   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v5.8.7
+   This file is for Contact Form7, release 5.9.5
+   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v5.9.5
    
    The original, source, mail.php, is file is at:
    * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on February 19, 2024.
+   This file was created on May 30, 2024.
    ===================================================================================== */
 
+add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
 
-	
+/**
+ * Filter callback that applies auto-p to HTML email message body.
+ */
+function wpcf7_mail_html_body_autop( $body ) {
+	if ( wpcf7_autop_or_not( array( 'for' => 'mail' ) ) ) {
+		$body = wpcf7_autop( $body );
+	}
+
+	return $body;
+}
+
+
+/**
+ * Class that represents an attempt to compose and send email.
+ */
+class WPCF7_Mail {
+
 	private static $current = null;
 
 	private $name = '';
 	private $locale = '';
 	private $template = array();
+	private $component = '';
 	private $use_html = false;
 	private $exclude_blank = false;
 
@@ -38,6 +50,35 @@ class WPCF7_Mail {
 	 */
 	public static function get_current() {
 		return self::$current;
+	}
+
+
+	/**
+	 * Returns the name of the email template currently processed.
+	 *
+	 * Expected output: 'mail' or 'mail_2'
+	 */
+	public static function get_current_template_name() {
+		$current = self::get_current();
+
+		if ( $current instanceof self ) {
+			return $current->get_template_name();
+		}
+	}
+
+
+	/**
+	 * Returns the name of the email template component currently processed.
+	 *
+	 * Expected output: 'recipient', 'sender', 'subject',
+	 *                  'additional_headers', 'body', or 'attachments'
+	 */
+	public static function get_current_component_name() {
+		$current = self::get_current();
+
+		if ( $current instanceof self ) {
+			return $current->get_component_name();
+		}
 	}
 
 
@@ -92,6 +133,22 @@ class WPCF7_Mail {
 
 
 	/**
+	 * Returns the name of the email template. A wrapper method of name().
+	 */
+	public function get_template_name() {
+		return $this->name();
+	}
+
+
+	/**
+	 * Returns the name of the email template component currently processed.
+	 */
+	public function get_component_name() {
+		return $this->component;
+	}
+
+
+	/**
 	 * Retrieves a component from the email template.
 	 *
 	 * @param string $component The name of the component.
@@ -100,8 +157,10 @@ class WPCF7_Mail {
 	 * @return string The text representation of the email component.
 	 */
 	public function get( $component, $replace_tags = false ) {
-		$use_html = ( $this->use_html && 'body' == $component );
-		$exclude_blank = ( $this->exclude_blank && 'body' == $component );
+		$this->component = $component;
+
+		$use_html = ( $this->use_html && 'body' === $component );
+		$exclude_blank = ( $this->exclude_blank && 'body' === $component );
 
 		$template = $this->template;
 		$component = isset( $template[$component] ) ? $template[$component] : '';
@@ -132,6 +191,8 @@ class WPCF7_Mail {
 			}
 		}
 
+		$this->component = '';
+
 		return $component;
 	}
 
@@ -161,14 +222,19 @@ class WPCF7_Mail {
 <title>' . esc_html( $this->get( 'subject', true ) ) . '</title>
 </head>
 <body>
-', $this );
+',
+			$this
+		);
+
+		$body = apply_filters( 'wpcf7_mail_html_body', $body, $this );
 
 		$footer = apply_filters( 'wpcf7_mail_html_footer',
 			'</body>
-</html>', $this );
+</html>',
+			$this
+		);
 
-		$html = $header . wpcf7_autop( $body ) . $footer;
-		return $html;
+		return $header . $body . $footer;
 	}
 
 
@@ -275,7 +341,7 @@ class WPCF7_Mail {
 		);
 
 
-        // ========================================================================================================================
+	// ========================================================================================================================
         // START: BOB BLOOM's EDITS
         // These edits last made on JUNE 2023
         // ========================================================================================================================
@@ -295,9 +361,7 @@ class WPCF7_Mail {
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
-        
 
-        
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
 
@@ -526,9 +590,7 @@ class WPCF7_MailTaggedText {
 			: null;
 
 		if ( $mail_tag->get_option( 'do_not_heat' ) ) {
-			$submitted = isset( $_POST[$field_name] )
-				? wp_unslash( $_POST[$field_name] )
-				: '';
+			$submitted = wp_unslash( $_POST[$field_name] ?? '' );
 		}
 
 		$replaced = $submitted;
@@ -538,8 +600,12 @@ class WPCF7_MailTaggedText {
 				$replaced = $this->format( $replaced, $format );
 			}
 
+			$separator = ( 'body' === WPCF7_Mail::get_current_component_name() )
+				? wp_get_list_item_separator()
+				: ', ';
+
 			$replaced = wpcf7_flat_join( $replaced, array(
-				'separator' => wp_get_list_item_separator(),
+				'separator' => $separator,
 			) );
 
 			if ( $html ) {
@@ -599,106 +665,6 @@ class WPCF7_MailTaggedText {
 		}
 
 		return $original;
-	}
-
-}
-
-
-/**
- * Class that represents a mail-tag.
- */
-class WPCF7_MailTag {
-
-	private $tag;
-	private $tagname = '';
-	private $name = '';
-	private $options = array();
-	private $values = array();
-	private $form_tag = null;
-
-
-	/**
-	 * The constructor method.
-	 */
-	public function __construct( $tag, $tagname, $values ) {
-		$this->tag = $tag;
-		$this->name = $this->tagname = $tagname;
-
-		$this->options = array(
-			'do_not_heat' => false,
-			'format' => '',
-		);
-
-		if ( ! empty( $values ) ) {
-			preg_match_all( '/"[^"]*"|\'[^\']*\'/', $values, $matches );
-			$this->values = wpcf7_strip_quote_deep( $matches[0] );
-		}
-
-		if ( preg_match( '/^_raw_(.+)$/', $tagname, $matches ) ) {
-			$this->name = trim( $matches[1] );
-			$this->options['do_not_heat'] = true;
-		}
-
-		if ( preg_match( '/^_format_(.+)$/', $tagname, $matches ) ) {
-			$this->name = trim( $matches[1] );
-			$this->options['format'] = $this->values[0];
-		}
-	}
-
-
-	/**
-	 * Returns the name part of this mail-tag.
-	 */
-	public function tag_name() {
-		return $this->tagname;
-	}
-
-
-	/**
-	 * Returns the form field name corresponding to this mail-tag.
-	 */
-	public function field_name() {
-		return strtr( $this->name, '.', '_' );
-	}
-
-
-	/**
-	 * Returns the value of the specified option.
-	 */
-	public function get_option( $option ) {
-		return $this->options[$option];
-	}
-
-
-	/**
-	 * Returns the values part of this mail-tag.
-	 */
-	public function values() {
-		return $this->values;
-	}
-
-
-	/**
-	 * Retrieves the WPCF7_FormTag object that corresponds to this mail-tag.
-	 */
-	public function corresponding_form_tag() {
-		if ( $this->form_tag instanceof WPCF7_FormTag ) {
-			return $this->form_tag;
-		}
-
-		if ( $submission = WPCF7_Submission::get_instance() ) {
-			$contact_form = $submission->get_contact_form();
-			$tags = $contact_form->scan_form_tags( array(
-				'name' => $this->field_name(),
-				'feature' => '! zero-controls-container',
-			) );
-
-			if ( $tags ) {
-				$this->form_tag = $tags[0];
-			}
-		}
-
-		return $this->form_tag;
 	}
 
 }
