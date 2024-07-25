@@ -165,6 +165,7 @@ function rejectedStuff()
         'sex',
         'shit',
         'side income',
+        'some rumors circulating that could be harmful to your reputation',
         'submityoursitefree',
         'the next generation of ai',
         'url=',
