@@ -23,6 +23,8 @@
 0  *  *  *  *       cd /home/1140098.cloudwaysapps.com/dmvwhsksgf/public_html && php /home/1140098.cloudwaysapps.com/dmvwhsksgf/public_html/custom_cron_scripts/update_contact_form7_with_bobs_updates.sh > /home/1140098.cloudwaysapps.com/dmvwhsksgf/tmp/update_contact_form7_with_bobs_updates.txt 2>&1 #CloudwaysApps
 ```
 
+# Honeypot for CF7
+- [https://wordpress.org/plugins/contact-form-7-honeypot/](https://wordpress.org/plugins/contact-form-7-honeypot/)
 
 
 DONE!
