@@ -1,19 +1,23 @@
 <?php
 
+
 /* =====================================================================================
    This file is the merge of the original source file with Bob Bloom's direct source code edits.
 
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 5.9.8
-   * https://github.com/rocklobster-in/contact-form-7/
+   This file is for Contact Form7, release 6.0.0
+   * https://github.com/rocklobster-in/contact-form-7/releases
    
    The original, source, mail.php, is file is at:
-   * https://github.com/rocklobster-in/contact-form-7/blob/v5.9.8/includes/mail.php
+   * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
+   * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on July 25, 2024.
+   This file was created on November 25, 2024.
    ===================================================================================== */
+
+
 
 add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
 
@@ -285,31 +289,29 @@ class WPCF7_Mail {
 				$path = path_join( WP_CONTENT_DIR, $attachment );
 
 				if ( ! wpcf7_is_file_path_in_content_dir( $path ) ) {
-					if ( WP_DEBUG ) {
-						trigger_error(
-							sprintf(
-								/* translators: %s: Attachment file path. */
-								__( 'Failed to attach a file. %s is not in the allowed directory.', 'contact-form-7' ),
-								$path
-							),
-							E_USER_NOTICE
-						);
-					}
+					wp_trigger_error(
+						'',
+						sprintf(
+							/* translators: %s: Attachment file path. */
+							__( 'Failed to attach a file. %s is not in the allowed directory.', 'contact-form-7' ),
+							$path
+						),
+						E_USER_NOTICE
+					);
 
 					return false;
 				}
 
 				if ( ! is_readable( $path ) or ! is_file( $path ) ) {
-					if ( WP_DEBUG ) {
-						trigger_error(
-							sprintf(
-								/* translators: %s: Attachment file path. */
-								__( 'Failed to attach a file. %s is not a readable file.', 'contact-form-7' ),
-								$path
-							),
-							E_USER_NOTICE
-						);
-					}
+					wp_trigger_error(
+						'',
+						sprintf(
+							/* translators: %s: Attachment file path. */
+							__( 'Failed to attach a file. %s is not a readable file.', 'contact-form-7' ),
+							$path
+						),
+						E_USER_NOTICE
+					);
 
 					return false;
 				}
@@ -323,12 +325,11 @@ class WPCF7_Mail {
 				$file_size = (int) @filesize( $path );
 
 				if ( 25 * MB_IN_BYTES < $total_size[$this->name] + $file_size ) {
-					if ( WP_DEBUG ) {
-						trigger_error(
-							__( 'Failed to attach a file. The total file size exceeds the limit of 25 megabytes.', 'contact-form-7' ),
-							E_USER_NOTICE
-						);
-					}
+					wp_trigger_error(
+						'',
+						__( 'Failed to attach a file. The total file size exceeds the limit of 25 megabytes.', 'contact-form-7' ),
+						E_USER_NOTICE
+					);
 
 					return false;
 				}
@@ -338,7 +339,7 @@ class WPCF7_Mail {
 				return true;
 			}
 		);
-
+		
 	// ========================================================================================================================
         // START: BOB BLOOM's EDITS
         // These edits last made on JUNE 2023
@@ -665,8 +666,8 @@ class WPCF7_MailTaggedText {
 		return $original;
 	}
 
-
 /* =====================================================================================
-   Modified mail.php. CF7, v5.9.8. This file was created on July 25, 2024.
+   Modified mail.php. CF7, v6.0.0. This file was created on November 24, 2024.
    ===================================================================================== */
+
 }
