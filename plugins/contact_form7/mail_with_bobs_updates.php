@@ -1,23 +1,20 @@
 <?php
 
-
 /* =====================================================================================
    This file is the merge of the original source file with Bob Bloom's direct source code edits.
 
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.0.1
+   This file is for Contact Form7, release 6.0.3
    * https://github.com/rocklobster-in/contact-form-7/releases
    
    The original, source, mail.php, is file is at:
    * https://github.com/rocklobster-in/contact-form-7/blob/master/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on November 28, 2024.
+   This file was created on February 01, 2025.
    ===================================================================================== */
-
-
 
 add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
 
@@ -665,10 +662,5 @@ class WPCF7_MailTaggedText {
 
 		return $original;
 	}
-
-
-/* =====================================================================================
-   Modified mail.php. CF7, v6.0.1. This file was created on November 28, 2024.
-   ===================================================================================== */
 
 }
