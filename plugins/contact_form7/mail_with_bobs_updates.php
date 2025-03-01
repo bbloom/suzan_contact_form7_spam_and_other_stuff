@@ -6,14 +6,14 @@
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.0.3
+   This file is for Contact Form7, release 6.0.4
    * https://github.com/rocklobster-in/contact-form-7/releases
    
    The original, source, mail.php, is file is at:
    * https://github.com/rocklobster-in/contact-form-7/blob/master/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on February 01, 2025.
+   This file was created on March 01, 2025.
    ===================================================================================== */
 
 add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
@@ -336,8 +336,9 @@ class WPCF7_Mail {
 				return true;
 			}
 		);
+		
 
-	// ========================================================================================================================
+        // ========================================================================================================================
         // START: BOB BLOOM's EDITS
         // These edits last made on JUNE 2023
         // ========================================================================================================================
@@ -357,6 +358,7 @@ class WPCF7_Mail {
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
+		
 
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
@@ -402,7 +404,7 @@ class WPCF7_Mail {
 		foreach ( explode( "\n", $template ) as $line ) {
 			$line = trim( $line );
 
-			if ( '' === $line or '[' == substr( $line, 0, 1 ) ) {
+			if ( '' === $line or '[' === substr( $line, 0, 1 ) ) {
 				continue;
 			}
 
@@ -568,8 +570,7 @@ class WPCF7_MailTaggedText {
 	 */
 	private function replace_tags_callback( $matches, $html = false ) {
 		// allow [[foo]] syntax for escaping a tag
-		if ( $matches[1] == '['
-		and $matches[4] == ']' ) {
+		if ( '[' === $matches[1] and ']' === $matches[4] ) {
 			return substr( $matches[0], 1, -1 );
 		}
 
@@ -662,5 +663,9 @@ class WPCF7_MailTaggedText {
 
 		return $original;
 	}
+
+	/* =====================================================================================
+	    ** END OF Modified mail.php  version 6.0.4 **
+	   ===================================================================================== */
 
 }
