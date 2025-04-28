@@ -6,15 +6,16 @@
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.0.4
-   * https://github.com/rocklobster-in/contact-form-7/releases
+   This file is for Contact Form7, release 6.06
+   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.0.6
    
    The original, source, mail.php, is file is at:
-   * https://github.com/rocklobster-in/contact-form-7/blob/master/includes/mail.php
+   * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on March 01, 2025.
+   This file was created on April 28, 2025.
    ===================================================================================== */
+
 
 add_filter( 'wpcf7_mail_html_body', 'wpcf7_mail_html_body_autop', 10, 1 );
 
@@ -336,9 +337,9 @@ class WPCF7_Mail {
 				return true;
 			}
 		);
-		
 
-        // ========================================================================================================================
+
+	// ========================================================================================================================
         // START: BOB BLOOM's EDITS
         // These edits last made on JUNE 2023
         // ========================================================================================================================
@@ -358,10 +359,10 @@ class WPCF7_Mail {
         // ========================================================================================================================
         // END: BOB BLOOM's EDITS
         // ========================================================================================================================
-		
 
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
+	
 
 
 	/**
@@ -664,8 +665,9 @@ class WPCF7_MailTaggedText {
 		return $original;
 	}
 
-	/* =====================================================================================
-	    ** END OF Modified mail.php  version 6.0.4 **
-	   ===================================================================================== */
+/* =====================================================================================
+   This file is for Contact Form7, release 6.06
+   This file was created on April 28, 2025.
+   ===================================================================================== */
 
 }
