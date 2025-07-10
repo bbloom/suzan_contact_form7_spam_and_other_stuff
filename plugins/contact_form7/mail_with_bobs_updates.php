@@ -6,14 +6,14 @@
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.06
-   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.0.6
+   This file is for Contact Form7, release 6.1
+   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.1.0
    
    The original, source, mail.php, is file is at:
    * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on April 28, 2025.
+   This file was created on July 09, 2025.
    ===================================================================================== */
 
 
@@ -338,31 +338,29 @@ class WPCF7_Mail {
 			}
 		);
 
-
-	// ========================================================================================================================
-        // START: BOB BLOOM's EDITS
-        // These edits last made on JUNE 2023
-        // ========================================================================================================================
-        include 'bob.php';
-
-        if (isEmailOkToSend($body)) {
-
-            // send the email
-            return wp_mail( $recipient, $subject, $body, $headers, $attachments );
-
-        } else {
-
-            // do not send the email
-            return false;
-        }
-
-        // ========================================================================================================================
-        // END: BOB BLOOM's EDITS
-        // ========================================================================================================================
+		// ========================================================================================================================
+	        // START: BOB BLOOM's EDITS
+	        // These edits last made on JUNE 2023
+	        // ========================================================================================================================
+	        include 'bob.php';
+	
+	        if (isEmailOkToSend($body)) {
+	
+	            // send the email
+	            return wp_mail( $recipient, $subject, $body, $headers, $attachments );
+	
+	        } else {
+	
+	            // do not send the email
+	            return false;
+	        }
+	
+	        // ========================================================================================================================
+	        // END: BOB BLOOM's EDITS
+	        // ========================================================================================================================
 
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
-	
 
 
 	/**
@@ -454,8 +452,10 @@ function wpcf7_mail_replace_tags( $content, $options = '' ) {
 		if ( $options['exclude_blank'] ) {
 			$replaced_tags = $line->get_replaced_tags();
 
-			if ( empty( $replaced_tags )
-			or array_filter( $replaced_tags, 'strlen' ) ) {
+			if (
+				empty( $replaced_tags ) or
+				array_filter( $replaced_tags, 'strlen' )
+			) {
 				$content[$num] = $replaced;
 			} else {
 				unset( $content[$num] ); // Remove a line.
@@ -522,8 +522,10 @@ class WPCF7_MailTaggedText {
 
 		$this->html = (bool) $options['html'];
 
-		if ( null !== $options['callback']
-		and is_callable( $options['callback'] ) ) {
+		if (
+			null !== $options['callback'] and
+			is_callable( $options['callback'] )
+		) {
 			$this->callback = $options['callback'];
 		} elseif ( $this->html ) {
 			$this->callback = array( $this, 'replace_tags_callback_html' );
@@ -588,7 +590,7 @@ class WPCF7_MailTaggedText {
 			: null;
 
 		if ( $mail_tag->get_option( 'do_not_heat' ) ) {
-			$submitted = wp_unslash( $_POST[$field_name] ?? '' );
+			$submitted = wpcf7_superglobal_post( $field_name );
 		}
 
 		$replaced = $submitted;
@@ -665,9 +667,8 @@ class WPCF7_MailTaggedText {
 		return $original;
 	}
 
-/* =====================================================================================
-   This file is for Contact Form7, release 6.06
-   This file was created on April 28, 2025.
-   ===================================================================================== */
+	/* =====================================================================================
+	   Modified mail.php. CF7, v6.1. This file was created on July 09, 2025.
+	   ===================================================================================== */
 
 }
