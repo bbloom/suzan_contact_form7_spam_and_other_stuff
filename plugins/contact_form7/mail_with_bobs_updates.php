@@ -6,14 +6,16 @@
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.1
-   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.1.0
+   This file is for Contact Form7, release 6.1.1
+   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.1.1
+  
+   *** PLEASE NOTE THAT THIS FILE IS THE SAME AS v6.1.0 ***
    
    The original, source, mail.php, is file is at:
    * https://github.com/rocklobster-in/contact-form-7/blob/dev/5.8/includes/mail.php
    * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
 
-   This file was created on July 09, 2025.
+   This file was created on August 29, 2025.
    ===================================================================================== */
 
 
@@ -668,7 +670,8 @@ class WPCF7_MailTaggedText {
 	}
 
 	/* =====================================================================================
-	   Modified mail.php. CF7, v6.1. This file was created on July 09, 2025.
+	   Modified mail.php. CF7, v6.1.1. This file was created on August 29, 2025.
+	   *** PLEASE NOTE THAT THIS FILE IS THE SAME AS v6.1.0 ***
 	   ===================================================================================== */
 
 }
