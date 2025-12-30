@@ -669,7 +669,7 @@ class WPCF7_MailTaggedText {
 	}
 
 	/* =====================================================================================
-	   Modified mail.php. CF7, v6.1.3. This file was created on November 30, 2025.
+	   Modified mail.php. CF7, v6.1.4. This file was created on November 30, 2025.
 	   ===================================================================================== */
 	
 
