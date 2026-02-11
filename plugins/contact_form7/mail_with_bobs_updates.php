@@ -1,20 +1,19 @@
 <?php
 
+
 /* =====================================================================================
    This file is the merge of the original source file with Bob Bloom's direct source code edits.
 
    The merged file, solely for referencing my edits, is at:
    * https://github.com/bbloom/suzan_contact_form7_spam_and_other_stuff/plugins/contact_form7/mail_with_updates_for_reference_do_not_change.php
 
-   This file is for Contact Form7, release 6.1.4, November 30, 2025
-   * https://github.com/rocklobster-in/contact-form-7/releases/tag/v6.1.4
-  
-  
+   This file is for Contact Form7, release 6.1.5
+   * https://github.com/rocklobster-in/contact-form-7
+   
    The original, source, mail.php, is file is at:
-   * https://github.com/rocklobster-in/contact-form-7/blob/master/includes/mail.php
-   * https://raw.githubusercontent.com/rocklobster-in/contact-form-7/master/includes/mail.php
+   * https://github.com/rocklobster-in/contact-form-7/blob/v6.1.5/includes/mail.php
 
-   This file was created on November 30, 2025.
+   This file was created on February 10, 2026.
    ===================================================================================== */
 
 
@@ -164,8 +163,7 @@ class WPCF7_Mail {
 		$use_html = ( $this->use_html && 'body' === $component );
 		$exclude_blank = ( $this->exclude_blank && 'body' === $component );
 
-		$template = $this->template;
-		$component = isset( $template[$component] ) ? $template[$component] : '';
+		$component = $this->template[$component] ?? '';
 
 		if ( $replace_tags ) {
 			$component = $this->replace_tags( $component, array(
@@ -251,7 +249,7 @@ class WPCF7_Mail {
 			'sender' => $this->get( 'sender', true ),
 			'body' => $this->get( 'body', true ),
 			'recipient' => $this->get( 'recipient', true ),
-			'additional_headers' => $this->get( 'additional_headers', true ),
+			'additional_headers' => $this->additional_headers(),
 			'attachments' => $this->attachments(),
 		);
 
@@ -266,20 +264,24 @@ class WPCF7_Mail {
 		$subject = wpcf7_strip_newline( $components['subject'] );
 		$sender = wpcf7_strip_newline( $components['sender'] );
 		$recipient = wpcf7_strip_newline( $components['recipient'] );
+		$additional_headers = $components['additional_headers'];
 		$body = $components['body'];
-		$additional_headers = trim( $components['additional_headers'] );
 
-		$headers = "From: $sender\n";
+		$headers = array();
+
+		$headers[] = sprintf( 'From: %s', $sender );
 
 		if ( $this->use_html ) {
-			$headers .= "Content-Type: text/html\n";
-			$headers .= "X-WPCF7-Content-Type: text/html\n";
+			$headers[] = 'Content-Type: text/html';
+			$headers[] = 'X-WPCF7-Content-Type: text/html';
 		} else {
-			$headers .= "X-WPCF7-Content-Type: text/plain\n";
+			$headers[] = 'X-WPCF7-Content-Type: text/plain';
 		}
 
-		if ( $additional_headers ) {
-			$headers .= $additional_headers . "\n";
+		$additional_headers = str_replace( "\r\n", "\n", $additional_headers );
+
+		foreach ( explode( "\n", $additional_headers ) as $additional_header ) {
+			$headers[] = trim( $additional_header );
 		}
 
 		$attachments = array_filter(
@@ -339,26 +341,27 @@ class WPCF7_Mail {
 			}
 		);
 
+
 		// ========================================================================================================================
-	        // START: BOB BLOOM's EDITS
-	        // These edits last made on JUNE 2023
-	        // ========================================================================================================================
-	        include 'bob.php';
-	
-	        if (isEmailOkToSend($body)) {
-	
-	            // send the email
-	            return wp_mail( $recipient, $subject, $body, $headers, $attachments );
-	
-	        } else {
-	
-	            // do not send the email
-	            return false;
-	        }
-	
-	        // ========================================================================================================================
-	        // END: BOB BLOOM's EDITS
-	        // ========================================================================================================================
+        // START: BOB BLOOM's EDITS
+        // These edits last made on JUNE 2023
+        // ========================================================================================================================
+        include 'bob.php';
+
+        if (isEmailOkToSend($body)) {
+
+            // send the email
+            return wp_mail( $recipient, $subject, $body, $headers, $attachments );
+
+        } else {
+
+            // do not send the email
+            return false;
+        }
+
+        // ========================================================================================================================
+        // END: BOB BLOOM's EDITS
+        // ========================================================================================================================
 
 		// return wp_mail( $recipient, $subject, $body, $headers, $attachments );
 	}
@@ -378,6 +381,33 @@ class WPCF7_Mail {
 		) );
 
 		return wpcf7_mail_replace_tags( $content, $options );
+	}
+
+
+	/**
+	 * Retrieves additional headers from the template.
+	 */
+	private function additional_headers( $template = null ) {
+		if ( ! $template ) {
+			$template = $this->get( 'additional_headers' );
+		}
+
+		$headers = array();
+
+		foreach ( explode( "\n", $template ) as $line ) {
+			if ( ! str_contains( $line, ':' ) ) {
+				continue;
+			}
+
+			$line = $this->replace_tags( $line );
+			$line = str_replace( "\r\n", "\n", $line );
+
+			list( $header ) = explode( "\n", $line, 2 );
+
+			$headers[] = $header;
+		}
+
+		return implode( "\n", $headers );
 	}
 
 
@@ -669,8 +699,7 @@ class WPCF7_MailTaggedText {
 	}
 
 	/* =====================================================================================
-	   Modified mail.php. CF7, v6.1.4. This file was created on November 30, 2025.
-	   ===================================================================================== */
-	
+   		Modified mail.php. CF7, v6.1.5 This file was created on February 10, 2026.
+   	   ===================================================================================== */
 
 }
